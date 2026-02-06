@@ -8,6 +8,7 @@ const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
+const lusca = require('lusca');
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+app.use(lusca.csrf());
 
 app.use(passport.initialize());
 app.use(passport.session());
